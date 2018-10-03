@@ -233,7 +233,7 @@ type style struct {
 	css string
 }
 
-func Style(css string) RailItem {
+func newStyle(css string) RailItem {
 	di := newDiagramItem("style", nil)
 	return &style{
 		diagramItem: di,
@@ -269,7 +269,7 @@ func Diagram(items ...RailItem) io.WriterTo {
 	css := ConfigDefaultStyle
 	var items_ []RailItem
 	if css != "" {
-		items_ = append(items_, Style(css))
+		items_ = append(items_, newStyle(css))
 	}
 	items_ = append(items_, newStart())
 	items_ = append(items_, items...)
